@@ -76,3 +76,10 @@ setInterval(() => {
     createShootingStar();
   }
 }, 3000);
+const spaceMusic = document.getElementById("spaceMusic");
+
+document.body.addEventListener("click", () => {
+  if (spaceMusic.paused) {
+    spaceMusic.play().catch(e => console.log("User interaction required to play audio."));
+  }
+});
