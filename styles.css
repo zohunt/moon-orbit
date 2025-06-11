@@ -1,27 +1,32 @@
-/* Body: full screen space background */
 body {
   margin: 0;
   height: 100vh;
-  background-color: #000; /* deep space black */
+  background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
-/* Starfield */
+/* Twinkling stars */
 .stars {
   position: absolute;
   width: 100%;
   height: 100%;
   background-image: radial-gradient(white 1px, transparent 1px);
   background-size: 40px 40px;
-  z-index: 0;
+  animation: twinkle 2s infinite alternate;
   opacity: 0.3;
+  z-index: 0;
 }
 
-/* Space container */
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 0.6; }
+}
+
 .space {
   position: relative;
   width: 200px;
@@ -40,9 +45,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 15px rgba(0, 0, 255, 0.5);
+  transition: background-color 0.5s ease;
 }
 
-/* Orbit path */
+/* Orbit base */
 .orbit {
   position: absolute;
   width: 200px;
@@ -53,17 +59,47 @@ body {
   animation: orbit 5s linear infinite;
 }
 
-/* Moon */
-.moon {
+/* Orbit variations */
+.orbit2 {
+  width: 150px;
+  height: 150px;
+  animation-duration: 7s;
+}
+
+.orbit3 {
+  width: 250px;
+  height: 250px;
+  animation-duration: 10s;
+}
+
+/* Moons & Satellite */
+.moon, .moon2, .satellite {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: gray;
   border-radius: 50%;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px rgba(200, 200, 200, 0.4);
+}
+
+.moon {
+  width: 30px;
+  height: 30px;
+  background-color: gray;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.moon2 {
+  width: 20px;
+  height: 20px;
+  background-color: lightgray;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+.satellite {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
 /* Orbit animation */
@@ -75,3 +111,4 @@ body {
     transform: rotate(360deg) translate(-50%, -50%);
   }
 }
+
